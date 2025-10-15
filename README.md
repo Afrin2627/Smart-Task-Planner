@@ -1,134 +1,161 @@
-🚀 Smart Task Planner
+🧠 Smart Task Planner: AI-Powered Goal Breakdown & Timeline Generator
+⭐ Project Vision: Turning Ambition into Action
 
+This project transforms high-level user goals into structured, time-bound action plans using LLM reasoning.
+It intelligently analyzes your objective — whether it’s “Launch a product in 2 weeks” or “Prepare for a data science interview” —
+and outputs a detailed, dependency-aware project plan with visual task timelines (bar graphs).
 
+🛠️ Technical Architecture & Stack
+Component	Technology	Purpose
+🧩 Backend API	Flask (Python)	Handles requests, processes user input
+🤖 LLM Engine	Google Gemini 1.5 Flash	Performs task reasoning & timeline generation
+🎨 Frontend/UI	HTML, CSS, JavaScript	Interactive interface for user input & visualization
+📊 Visualization	Chart.js (Bar Graphs)	Displays task timelines & dependencies
+🔐 Environment	.env	Stores API keys securely
+⚙️ Architectural Flow
 
+Goal Input → User enters a project goal (e.g., “Build an app in 10 days”).
 
+Processing Layer (Flask) → Sends the input to Gemini via the backend.
 
-🧠 Objective
+LLM Reasoning → The model generates a structured plan with dependencies & durations.
 
-Break user goals into actionable tasks with timelines, dependencies, and summaries — powered by AI reasoning (LLM).
+Visualization Layer → Tasks and timelines are displayed using interactive bar charts.
+
+🧠 LLM Prompting Strategy
+
+“Break down this goal into actionable tasks with suggested deadlines and dependencies.”
+
+The prompt is designed to make the LLM output structured, concise, and logically sequenced tasks.
+This ensures clarity, efficient execution, and visually appealing task timelines.
 
 🧩 Scope of Work
 
 ✅ Input:
-User enters a goal (e.g., “Launch a product in 2 weeks”)
+User-provided goal text (e.g., “Launch a product in 2 weeks”)
 
 ✅ Output:
 
-Detailed task breakdown
+Detailed Task Breakdown
 
-Dependencies between tasks
+Dependencies & Timelines
 
-Estimated timelines & durations
-
-Beautiful bar graph visualization of project flow
+Visual Bar Graphs (Timeline Representation)
 
 ✅ Frontend:
-
-Clean and interactive web interface built with HTML, CSS, and JavaScript
-
-Displays both text-based and visual plan output
+Elegant web interface with interactive visualization
 
 ✅ Backend:
+Flask API integrated with Google Gemini API for reasoning and plan generation
 
-Flask API processes user input and interacts with Gemini LLM to generate structured plans
+🚀 Final Deliverables
+Deliverable	Status
+🧠 AI-Generated Project Plans	✅ Working
+📊 Visual Task Timeline	✅ Implemented
+💻 Flask API	✅ Live locally
+🎨 Frontend UI	✅ Interactive
+📦 GitHub Repo + README	✅ Completed
+✅ Evaluation Focus
+Metric	Description
+Task Completeness	Goal fully broken down into logical subtasks
+Timeline Logic	Dependencies and durations make realistic sense
+LLM Reasoning	Proper use of Gemini’s structured thinking
+Code Quality	Modular Flask design with clear separation of logic
+Visualization	Intuitive bar chart display for users
+⚙️ Installation Guide
+1️⃣ Clone the Repository
+git clone https://github.com/Afrin2627/Smart-Task-Planner.git
+cd Smart-Task-Planner
 
-⚙️ Technical Expectations
+2️⃣ Create Virtual Environment
+python -m venv venv
+# Windows
+venv\Scripts\activate
+# macOS/Linux
+source venv/bin/activate
 
-🧩 Backend API: Built using Flask
+3️⃣ Install Dependencies
+pip install -r requirements.txt
 
-🤖 LLM: Google Gemini 1.5 Flash for reasoning and task generation
+4️⃣ Configure Environment
 
-📊 Visualization: Task timelines displayed using bar charts for clarity
+Create a .env file in the root directory:
 
-🧠 LLM Usage Guidance
+GEMINI_API_KEY=your_api_key_here
 
-The system uses prompting to guide the LLM into structured reasoning:
+5️⃣ Run the Application
+python app.py
+
+
+Open your browser → http://127.0.0.1:5000
+
+🎯 Example Run — “Launch a New Mobile App in 1 Month”
+
+Here’s how Smart Task Planner transforms a high-level goal into a structured, time-bound project plan using AI reasoning.
+
+🧩 Input Goal
+
+“Launch a new mobile app in 1 month”
+
+🤖 AI-Generated Project Plan
+
+The system intelligently breaks down the goal into clear, sequential tasks with:
+
+Defined phases and subtasks
+
+Estimated durations (in days)
+
+Logical dependencies between steps
+
+Visual timeline representation for progress tracking
+
+📊 Task Duration Overview
+<p align="center"> <img src="4565f044-60c8-416e-9ecb-8aa8917873ce.png" alt="Task Duration Overview" width="800"/> </p>
+
+Highlights:
+
+Clearly shows key project stages — Design, Backend Setup, Testing, App Store Launch, etc.
+
+Estimates realistic durations for each stage to fit within 1 month.
+
+Provides an intuitive timeline overview to help plan execution efficiently.
+
+💡 Behind the Scenes — LLM Reasoning
+
+The AI prompt used:
 
 “Break down this goal into actionable tasks with suggested deadlines and dependencies.”
 
-The response is parsed as JSON and rendered visually in the frontend.
+Using this, the Gemini 1.5 Flash model interprets the goal contextually — generating well-structured, sequential tasks with logical flow and timeline accuracy.
 
-📦 Deliverables
+🧠 Insight
 
-✅ GitHub Repository (this project)
+The Smart Task Planner acts like your AI-powered project manager — turning ambitious ideas into executable plans, backed by structured logic and clear visualization.
 
-✅ README.md (includes all project details)
+🏁 Conclusion
 
-✅ Demo Video (to be added after recording)
+This project showcases end-to-end AI reasoning — from understanding user intent to delivering a realistic, visually guided plan.
+It’s a demonstration of how LLMs + visualization can revolutionize goal management, planning, and execution.
 
-🧪 Evaluation Focus
-Criteria	Description
-Task Completeness	Full breakdown of goal into subtasks
-Timeline Logic	Tasks ordered by duration and dependencies
-LLM Reasoning	Uses structured prompting and AI planning
-Code & API Design	Clean, modular Flask + Frontend integration
-Visualization	Interactive bar graph showing task flow
-🏗️ Project Structure
-smart-task-planner/
-│
-├── app.py                # Flask backend
-├── llm.py                # Gemini API integration logic
-├── templates/
-│   └── index.html        # Frontend UI
-├── requirements.txt      # Dependencies
-├── test_request.py       # Local testing script
-├── list_models.py        # Model listing for Gemini API
-└── .env                  # Environment variables (API keys)
+
 
 🧰 Technologies Used
 
 Frontend: HTML, CSS, JS
 
-Backend: Flask (Python)
+Backend: Flask
 
-AI: Google Gemini 1.5 Flash
+AI Model: Google Gemini 1.5 Flash
 
-Visualization: Chart.js / D3.js (Bar Graphs)
+Visualization: Chart.js
 
 Version Control: Git & GitHub
 
-🚀 How to Run Locally
 
-Clone the repo
+💡 Future Enhancements
 
-git clone https://github.com/Afrin2627/Smart-Task-Planner.git
-cd Smart-Task-Planner
+✅ Add database support for saving task plans
 
+✅ Allow plan export (PDF/Excel)
 
-Install dependencies
-
-pip install -r requirements.txt
-
-
-Set up your Gemini API key in .env:
-
-GEMINI_API_KEY=your_api_key_here
-
-
-Run the Flask app
-
-python app.py
-
-
-Open your browser and go to:
-👉 http://127.0.0.1:5000
-
-
-💡 Example Prompt & Output
-
-Input:
-
-“Build a mobile app for food delivery in 3 weeks”
-
-AI Output (LLM Reasoning):
-
-Task: Design UI – 3 days
-
-Task: Build Backend – 5 days
-
-Task: API Integration – 4 days
-
-Task: Testing & Launch – 5 days
-
-(Displayed in bar chart + text summary)
+✅ Integrate real-time collaboration via socket-based UI
