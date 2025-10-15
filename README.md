@@ -109,8 +109,7 @@ Logical dependencies between steps
 
 Visual timeline representation for progress tracking
 
-📊 Task Duration Overview
-<p align="center"> <img src="4565f044-60c8-416e-9ecb-8aa8917873ce.png" alt="Task Duration Overview" width="800"/> </p>
+
 
 Highlights:
 
