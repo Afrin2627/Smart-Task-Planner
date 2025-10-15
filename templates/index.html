@@ -1,0 +1,193 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🚀 Smart Task Planner</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+      background: linear-gradient(135deg, #e0f2ff 0%, #f8e1ff 100%);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      background-attachment: fixed;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 750px;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 2rem 2.5rem;
+      margin-top: 4rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+      backdrop-filter: blur(12px);
+    }
+
+    h1 {
+      text-align: center;
+      color: #1a1c2b;
+    }
+
+    textarea {
+      width: 100%;
+      height: 90px;
+      font-size: 1rem;
+      padding: 1rem;
+      border-radius: 10px;
+      resize: none;
+      background: #fafbff;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background: linear-gradient(90deg, #007bff, #00c6ff);
+      color: white;
+      border: none;
+      padding: 0.9rem 1.5rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-top: 1.2rem;
+      width: 100%;
+    }
+
+    .plan-container {
+      margin-top: 2rem;
+    }
+
+    canvas {
+      margin-top: 1.5rem;
+    }
+
+    .summary {
+      background: #eaf4ff;
+      border-left: 5px solid #007bff;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 1.5rem;
+    }
+
+    .task-list {
+      margin-top: 1.5rem;
+    }
+
+    .task {
+      background: #f9fafb;
+      border-left: 5px solid #4caf50;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 10px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🚀 Smart Task Planner</h1>
+    <textarea id="goal" placeholder="Enter your project goal..."></textarea>
+    <button onclick="generatePlan()">Generate Plan</button>
+
+    <div id="loading" class="loading" style="display:none;">⏳ Generating your plan...</div>
+    <div id="planContainer" class="plan-container"></div>
+  </div>
+
+  <script>
+    async function generatePlan() {
+      const goal = document.getElementById("goal").value.trim();
+      const planContainer = document.getElementById("planContainer");
+      const loading = document.getElementById("loading");
+
+      if (!goal) {
+        alert("Please enter a goal first!");
+        return;
+      }
+
+      planContainer.innerHTML = "";
+      loading.style.display = "block";
+
+      try {
+        const response = await fetch("http://127.0.0.1:5000/generate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ goal })
+        });
+
+        const data = await response.json();
+        loading.style.display = "none";
+
+        // Summary
+        if (data.summary) {
+          const summaryEl = document.createElement("div");
+          summaryEl.className = "summary";
+          summaryEl.innerText = data.summary;
+          planContainer.appendChild(summaryEl);
+        }
+
+        // Bar chart (visual timeline)
+        if (data.plan && data.plan.length > 0) {
+          const labels = data.plan.map(t => t.task);
+          const durations = data.plan.map(t => parseInt(t.duration) || 0);
+
+          const canvas = document.createElement("canvas");
+          planContainer.appendChild(canvas);
+
+          new Chart(canvas, {
+            type: "bar",
+            data: {
+              labels: labels,
+              datasets: [{
+                label: "Estimated Duration (days)",
+                data: durations,
+                backgroundColor: "rgba(0, 123, 255, 0.6)",
+                borderColor: "#007bff",
+                borderWidth: 1,
+                borderRadius: 6
+              }]
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                legend: { display: false },
+                title: {
+                  display: true,
+                  text: "📊 Task Duration Overview",
+                  font: { size: 16, weight: "bold" }
+                }
+              },
+              scales: {
+                y: { beginAtZero: true, title: { display: true, text: "Days" } }
+              }
+            }
+          });
+
+          // Task List (text summary)
+          const taskList = document.createElement("div");
+          taskList.className = "task-list";
+
+          data.plan.forEach(task => {
+            const taskEl = document.createElement("div");
+            taskEl.className = "task";
+            taskEl.innerHTML = `
+              <h3>${task.task}</h3>
+              <p>🕒 Duration: ${task.duration}</p>
+              <p>🔗 Dependencies: ${task.dependencies.length ? task.dependencies.join(", ") : "None"}</p>
+            `;
+            taskList.appendChild(taskEl);
+          });
+
+          planContainer.appendChild(taskList);
+        }
+
+      } catch (err) {
+        loading.style.display = "none";
+        planContainer.innerHTML = `<p style="color:red;">⚠️ Error: ${err.message}</p>`;
+      }
+    }
+  </script>
+</body>
+</html>
