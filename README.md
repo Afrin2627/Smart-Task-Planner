@@ -70,14 +70,9 @@ python app.py
 Open in your browser
 Go to http://127.0.0.1:5000 to use the app.
 
-🖼️ Demo / Screenshots
+🖼️ Demo
 
-Enter your goal and generate a smart task plan.
-
-
-Example of a generated task plan based on user input.
-
-(Optional: add a GIF of interaction for better impact)
+https://github.com/user-attachments/assets/4be780a9-4a01-4e7a-bdfc-a28d3b0d20da
 
 📝 Usage Instructions
 Open the app in your browser.
