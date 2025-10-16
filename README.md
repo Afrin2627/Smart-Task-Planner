@@ -3,6 +3,8 @@
 An **AI-powered task planning app** that generates optimized task plans based on your goals using OpenAI API.  
 Designed to help users **organize tasks efficiently** and increase productivity.
 
+![image_alt](https://github.com/Afrin2627/Smart-Task-Planner/blob/c5b09ed58d0a7b491b0d26608ab8b8f9546735f1/img.png)
+
 ---
 
 ## 🌟 Features
@@ -72,7 +74,8 @@ Go to http://127.0.0.1:5000 to use the app.
 
 🖼️ Demo
 
-https://github.com/user-attachments/assets/4be780a9-4a01-4e7a-bdfc-a28d3b0d20da
+<video src="https://github.com/user-attachments/assets/4be780a9-4a01-4e7a-bdfc-a28d3b0d20da" controls></video>
+
 
 📝 Usage Instructions
 Open the app in your browser.
