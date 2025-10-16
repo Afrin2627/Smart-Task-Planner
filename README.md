@@ -5,6 +5,11 @@ Designed to help users **organize tasks efficiently** and increase productivity.
 
 ![image_alt](https://github.com/Afrin2627/Smart-Task-Planner/blob/c5b09ed58d0a7b491b0d26608ab8b8f9546735f1/img.png)
 
+
+🖼️ Demo
+
+https://github.com/user-attachments/assets/855deb19-dc39-424a-ac5c-67aa8156e27b
+
 ---
 
 ## 🌟 Features
@@ -72,9 +77,7 @@ python app.py
 Open in your browser
 Go to http://127.0.0.1:5000 to use the app.
 
-🖼️ Demo
 
-<video src="https://github.com/user-attachments/assets/4be780a9-4a01-4e7a-bdfc-a28d3b0d20da" controls></video>
 
 
 📝 Usage Instructions
